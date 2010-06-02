@@ -69,6 +69,7 @@ module GeoIP
       db = new(*flags)
       if block_given?
         yield db
+        db.close
       else
         return db
       end
@@ -82,7 +83,7 @@ module GeoIP
       @ptr
     end
     
-    def delete
+    def close
       C.GeoIP_delete(@ptr)
     end
     

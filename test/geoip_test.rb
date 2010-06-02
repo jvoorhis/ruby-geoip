@@ -10,6 +10,10 @@ class GeoIPCountryTest < Test::Unit::TestCase
     @db = GeoIP::Country.open
   end
 
+  def teardown
+    @db.close
+  end
+
   def test_country_code_by_addr
     assert_equal "US", @db.country_code_by_addr(UNITED_STATES_IP),
       "Lookup by IP String failed"
